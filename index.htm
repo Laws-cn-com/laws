@@ -95,15 +95,31 @@ function brandPicTurn(){
 								<td style="height: 29px; " class="style12" valign="bottom" colspan="2">
 								
 								    <table style="border-collapse:collapse;font-size:14px;">
-								      <form action="http://www.sogou.com/web" target="_blank" name="sogou_queryform">
-								        <tr>
-								          <td valign="top" class="style12"><a href="http://www.sogou.com/"></a></td>
-								          <td class="style12">
-								            <input type="text" size="30" name="query">
-								            <input type="Submit" value=" sogou "></td>
-								        </tr>
-								      </form>
+								      <tr>
+								        <td class="style12" style="white-space:nowrap;">
+								          <select id="searchEngine" style="font-size:13px;padding:1px 2px;vertical-align:middle;">
+								            <option value="bing">Bing</option>
+								            <option value="sogou">搜狗</option>
+								            <option value="brave">Brave</option>
+								          </select>
+								          <input type="text" id="searchQuery" size="26" style="vertical-align:middle;" onkeydown="if(event.key==='Enter'){doSearch();return false}">
+								          <input type="button" value=" 搜索 " style="vertical-align:middle;" onclick="doSearch()">
+								        </td>
+								      </tr>
 								    </table>
+								    <script>
+								    function doSearch() {
+								      var q = document.getElementById('searchQuery').value;
+								      if (!q.trim()) return;
+								      var engine = document.getElementById('searchEngine').value;
+								      var urls = {
+								        bing: 'https://cn.bing.com/search?q=',
+								        sogou: 'https://www.sogou.com/web?query=',
+								        brave: 'https://search.brave.com/search?q='
+								      };
+								      window.open(urls[engine] + encodeURIComponent(q));
+								    }
+								    </script>
 
 								</td>
 				</tr>
